@@ -23,4 +23,6 @@ public interface DbConnection {
             return null;
         }
     }
+
+    boolean insertUser(User user);
 }

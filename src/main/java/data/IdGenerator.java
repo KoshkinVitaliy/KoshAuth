@@ -3,7 +3,7 @@ package data;
 public class IdGenerator {
     public static String generateId(User user) {
         var id = user.getJob().substring(0,1).toUpperCase() + "-";
-        ;
+
         return id + generateNumbersId();
     }
 

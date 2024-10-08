@@ -13,22 +13,22 @@ public class User {
     private double salary;
     public static int counter = 1;
 
-    public User(String name, String surname, String lastName, String password) {
-        this.name = name;
+    public User(String surname, String name,  String lastName, String password) {
+        counter++;
         this.surname = surname;
+        this.name = name;
         this.lastName = lastName;
         this.password = password;
         this.job = checkJob();
-        counter = 2500000;
-        //counter++;
-       // this.id = IdGenerator.generateId();
-    //    this.username = generateUsername();
+        this.id = IdGenerator.generateId(this);
+        this.username = UsernameGenerator.generateUsername(this);
+        this.salary = 0;
     }
 
-    private String checkJob() {
+    public static String checkJob() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Введиите должность:");
         var job = sc.nextLine();
+
         switch (job.toUpperCase()) {
             case "ADMINISTRATOR", "MANAGER", "ENGINEER" -> {
                 return job;
