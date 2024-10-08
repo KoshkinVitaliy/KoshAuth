@@ -1,5 +1,6 @@
 package app;
 
+import data.DbConnectionImpl;
 import data.User;
 
 import java.util.InputMismatchException;
@@ -24,15 +25,16 @@ public class AppMenu {
             case 1 -> showEnterMenu();
             case 2 -> showRegistrationMenu();
             case 3 -> System.exit(0);
-            default -> {System.out.println("Введён неккоректный выбор. " +
-                    "Попробуйте ещё.");
+            default -> {
+                System.out.println("Введён неккоректный выбор. " +
+                        "Попробуйте ещё.");
                 showMenu();
             }
 
         }
     }
 
-    private static User showRegistrationMenu() {
+    private static void showRegistrationMenu() {
         var name = "";
         var surname = "";
         var lastName = "";
@@ -49,13 +51,14 @@ public class AppMenu {
         System.out.println("Введите отчество:");
         lastName = sc.nextLine();
 
-        System.out.println("Введите должность:");
-        User.checkJob();
-
         System.out.println("Введите пароль:");
         password = sc.nextLine();
 
-        return new User(surname, name, lastName, password);
+        System.out.println("Введите должность:");
+        User.checkJob();
+
+        DbConnectionImpl impl = new DbConnectionImpl();
+        impl.insertUser(new User(surname, name, lastName, password));
     }
 
     private static void showEnterMenu() {
@@ -67,8 +70,7 @@ public class AppMenu {
             Scanner sc = new Scanner(System.in);
             choice = sc.nextInt();
             //sc.close();
-        }
-        catch (InputMismatchException e) {
+        } catch (InputMismatchException e) {
             System.out.println("Неккоректный тип ввода меню. Попробуйте снова");
             getUserChoice();
         }
