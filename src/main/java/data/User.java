@@ -27,6 +27,8 @@ public class User {
 
     public static String checkJob() {
         Scanner sc = new Scanner(System.in);
+        System.out.println("Введите должность:");
+
         var job = sc.nextLine();
 
         switch (job.toUpperCase()) {

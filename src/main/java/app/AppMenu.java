@@ -54,7 +54,6 @@ public class AppMenu {
         System.out.println("Введите пароль:");
         password = sc.nextLine();
 
-        System.out.println("Введите должность:");
         User.checkJob();
 
         DbConnectionImpl impl = new DbConnectionImpl();
