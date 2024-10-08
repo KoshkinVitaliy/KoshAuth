@@ -14,7 +14,7 @@ public interface DbConnection {
                     "admin"
             );
 
-            System.out.println("Connection succcesed!");
+           // System.out.println("Connection succcesed!");
 
             return connection;
         } catch (ClassNotFoundException | SQLException e) {
@@ -25,4 +25,5 @@ public interface DbConnection {
     }
 
     boolean insertUser(User user);
+    void select();
 }

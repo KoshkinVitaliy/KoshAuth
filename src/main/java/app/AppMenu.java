@@ -3,6 +3,7 @@ package app;
 import data.DbConnectionImpl;
 import data.User;
 
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -54,10 +55,18 @@ public class AppMenu {
         System.out.println("Введите пароль:");
         password = sc.nextLine();
 
+        System.out.println("Введите должность:");
         User.checkJob();
 
-        DbConnectionImpl impl = new DbConnectionImpl();
-        impl.insertUser(new User(surname, name, lastName, password));
+        try {
+            DbConnectionImpl impl = new DbConnectionImpl();
+            impl.insertUser(new User(surname, name, lastName, password));
+            impl.connect().close();
+        }
+        catch (SQLException e) {
+            System.out.println("Failure");
+        }
+        showMenu();
     }
 
     private static void showEnterMenu() {

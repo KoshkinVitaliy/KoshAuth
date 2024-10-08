@@ -11,10 +11,8 @@ public class User {
     private String password;
     private String job;
     private double salary;
-    public static int counter = 1;
 
     public User(String surname, String name,  String lastName, String password) {
-        counter++;
         this.surname = surname;
         this.name = name;
         this.lastName = lastName;
@@ -27,8 +25,6 @@ public class User {
 
     public static String checkJob() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Введите должность:");
-
         var job = sc.nextLine();
 
         switch (job.toUpperCase()) {
